@@ -47,4 +47,26 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+
+#Esta instrucción es para usar los métodos de Capybara en los test de integración
+  config.include Capybara::DSL
+
+  #Esta instrucción es para poder usar las rutas del archivo routes
+  config.include Rails.application.routes.url_helpers
+
+  #Cambiando el Driver de Capybara y estableciendo Chrome como Navegador
+  Capybara.register_driver :selenium do |app|
+     Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
+
+  config.infer_base_class_for_anonymous_controllers = false
+
+  #Este código es para que Selenium no abra muchos hilos, y no falle cuando algún IT use Javascript 
+  ActiveRecord::ConnectionAdapters::ConnectionPool.class_eval do
+     def current_connection_id
+        Thread.main.object_id
+     end
+end
+
 end

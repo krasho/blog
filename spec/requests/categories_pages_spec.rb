@@ -6,6 +6,7 @@ RSpec.describe "CategoriesPosts", type: :request do
   describe "Listing All Categries" do 
      before do
      	visit categories_path
+     	save_and_open_page
      end
 
 	context "Listing all categories" do 

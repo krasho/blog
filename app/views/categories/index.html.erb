@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Listado de Categorías</h1>
+  </div>
+
+    <%= render 'shared/flash_messages'%>
+    <p>
+      <%= link_to 'Agregar Categoría', new_category_path %>
+    </p>
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td>
+            <%= category.name %>
+          </td>
+          <td class="item">
+            <%= link_to 'Editar', {:action=>"edit", :controller=>"categories", :id=>category.id} %>
+            <%= link_to 'Eliminar', category, method: :delete, :id => "del" + category.id.to_s %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

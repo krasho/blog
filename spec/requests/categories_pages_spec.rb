@@ -22,13 +22,16 @@ RSpec.describe "CategoriesPosts", type: :request do
 	   end
   end
 
+
   describe "Edit Category" do
     context "Correct Category" do
       let!(:category) {categories.first}
 
       before do
         visit categories_path
-        find_by_id('ed'+category.id.to_s).click
+        #find_by_id('ed'+category.id.to_s).click
+        #click_link category.name
+        save_and_open_page
       end
 
       it "should appear the text Editando" do

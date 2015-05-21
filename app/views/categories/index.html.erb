@@ -24,7 +24,7 @@
             <%= category.name %>
           </td>
           <td class="item">
-            <%= link_to 'Editar', {:action=>"edit", :controller=>"categories", :id=>"ed"+category.id.to_s} %>
+            <%= link_to 'Editar', {:action=>"edit", :controller=>"categories"}, :id=>"ed"+category.id.to_s %>
             <%= link_to 'Eliminar', category, method: :delete, :id => "del" + category.id.to_s %>
           </td>
         </tr>

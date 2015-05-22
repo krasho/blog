@@ -83,4 +83,54 @@ RSpec.describe "CategoriesPosts", type: :request do
       end
     end
   end
+
+  describe "new category" do
+    before do
+        visit categories_path
+        click_link "Agregar Categoría"
+    end
+
+    it "Should appear the text 'Agregar una categoría'" do
+        expect(page).to have_content "Agregar una categoría"
+    end
+  end
+
+  describe "Create category" do
+    context "With valid data" do
+        before do
+            visit new_category_path
+            fill_in "category_name", :with=>"Categoría dada de alta con spec"
+            click_button "Guardar"
+        end
+
+        it "Checking if the record saves" do
+            expect(page).to have_content "Registro Guardado Satisfactoriamente"
+        end
+    end
+
+    context "With invalid data" do
+        before do
+            visit new_category_path
+            click_button "Guardar"
+        end
+
+        it "Showing error without name" do
+            expect(page).to have_content "Name can't be blank"
+        end
+    end
+  end
+
+  describe "Delete a bank" do
+    let!(:bank) {banks.first}
+    before do
+        visit banks_path
+        find_by_id('del'+bank.id.to_s).click
+    end
+
+    it "Showing confirmation of error" do
+        expect(page).to have_content "El banco fue eliminado correctamente."
+    end
+  end
+
+
 end

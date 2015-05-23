@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :categories
+  resources :posts
   root :to => "categories#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

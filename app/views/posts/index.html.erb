@@ -1,0 +1,28 @@
+<div class="container bs-docs-container">
+  <%= render 'shared/flash_messages'%>
+
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class = "bs-docs-section">
+        <div class="bs-callout bs-callout-info" id="callout-xref-input-group">
+          <h4 id="input-groups"><%= post.title  %><a class="anchorjs-link" href="#input-groups">
+            <span class="anchorjs-icon"></span></a>
+          </h4>
+          <div id="datos del post">
+             <h5>
+               <span>Autor</span>
+               <span><%= post.publish_date %></span>
+               <span><%= post.category.name %></span>
+             </h5>
+          </div>
+
+            <p>
+              <%= post.body %>
+              <a href="../components/#input-groups">Ver Post</a>.
+            </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

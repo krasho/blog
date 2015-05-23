@@ -30,7 +30,8 @@ class CategoriesController < ApplicationController
     end
 
     def create
-    @category = @category_service.new category_params
+    @category = @category_service.new
+    category_assign_fields
 
         respond_to do |format|
           if @category.save
@@ -54,6 +55,10 @@ class CategoriesController < ApplicationController
     private
     def category_params
        params.require(:category).permit(:name)
+    end
+
+    def category_assign_fields
+        @category.name = params[:category][:name]
     end
 
     def set_category

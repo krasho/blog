@@ -1,13 +1,8 @@
 class CategoryService
    attr_reader :service
 
-   def new (params = "")
-      if (params == "")
-          @service = Category.new
-      else
-          @service = Category.new params
-      end
-
+   def new
+      @service = Category.new
    end
 
    def all

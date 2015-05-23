@@ -120,15 +120,15 @@ RSpec.describe "CategoriesPosts", type: :request do
     end
   end
 
-  describe "Delete a bank" do
-    let!(:bank) {banks.first}
+  describe "Delete a category" do
+    let!(:category) {category.first}
     before do
-        visit banks_path
-        find_by_id('del'+bank.id.to_s).click
+        visit categories_path
+        find_by_id('del'+category.id.to_s).click
     end
 
     it "Showing confirmation of error" do
-        expect(page).to have_content "El banco fue eliminado correctamente."
+        expect(page).to have_content "La categoría fue eliminado correctamente."
     end
   end
 

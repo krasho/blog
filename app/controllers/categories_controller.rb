@@ -1,8 +1,10 @@
 class CategoriesController < ApplicationController
+    before_action :create_service
     before_action :set_category, only: [:edit, :update, :destroy]
 
+
 	def index
-		@categories = Category.all
+		@categories = @category_service.all
 	end
 
     def edit
@@ -24,11 +26,11 @@ class CategoriesController < ApplicationController
     end
 
     def new
-        @category = Category.new
+        @category = @category_service.new
     end
 
     def create
-        @category = Category.new(category_params)
+    @category = @category_service.new category_params
 
         respond_to do |format|
           if @category.save
@@ -49,17 +51,20 @@ class CategoriesController < ApplicationController
        end
     end
 
-
     private
     def category_params
-      params.require(:category).permit(:name)
+       params.require(:category).permit(:name)
     end
 
     def set_category
-        @category = Category.find(params[:id])
+        @category = @category_service.find params[:id]
 
     rescue ActiveRecord::RecordNotFound
         flash[:error] = "La categoría no existe"
         redirect_to categories_path
+    end
+
+    def create_service
+      @category_service = CategoryService.new
     end
 end

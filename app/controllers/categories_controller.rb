@@ -11,37 +11,16 @@ class CategoriesController < ApplicationController
     end
 
     def update
-
-      respond_to do |format|
-
-          if @category.update(category_params)
-            format.html { redirect_to categories_path, notice: 'Registro Guardado Satisfactoriamente' }
-            format.json { render :index, status: :ok, location: @category }
-          else
-            format.html { render :edit}
-            format.json { render json: @category.errors, status: :unprocessable_entity }
-          end
-      end
-
+       category_save
     end
 
     def new
-        @category = @category_service.new
+       @category = @category_service.new
     end
 
     def create
-    @category = @category_service.new
-    category_assign_fields
-
-        respond_to do |format|
-          if @category.save
-            format.html { redirect_to categories_path, notice: 'Registro Guardado Satisfactoriamente' }
-            format.json { render :index, status: :created, location: @category }
-          else
-            format.html { render :new }
-            format.json { render json: @category.errors, status: :unprocessable_entity }
-          end
-        end
+       @category = @category_service.new
+       category_save
     end
 
     def destroy
@@ -53,8 +32,20 @@ class CategoriesController < ApplicationController
     end
 
     private
-    def category_params
-       params.require(:category).permit(:name)
+
+    def category_save
+      category_assign_fields
+
+        respond_to do |format|
+          if @category.save
+            format.html { redirect_to categories_path, notice: 'Registro Guardado Satisfactoriamente' }
+            format.json { render :index, status: :created, location: @category }
+          else
+            format.html { render :new }
+            format.json { render json: @category.errors, status: :unprocessable_entity }
+          end
+        end
+
     end
 
     def category_assign_fields

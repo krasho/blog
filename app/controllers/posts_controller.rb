@@ -9,6 +9,15 @@ class PostsController < ApplicationController
     def show
     end
 
+    def new
+        @post = @post_service.new
+    end
+
+    def create
+        @post = @post_service.new
+        post_save
+    end
+
     private
 
     def post_save
@@ -27,7 +36,9 @@ class PostsController < ApplicationController
     end
 
     def post_assign_fields
-        @post.name = params[:post][:name]
+        @post.title       = params[:post][:title]
+        @post.body        = params[:post][:body]
+        @post.category_id = params[:post][:category_id]
     end
 
     def set_post

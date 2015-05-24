@@ -1,1 +1,19 @@
-<h1><%= @post.title %></h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><%= @post.title %></h1>
+  </div>
+
+    <%= render 'shared/flash_messages'%>
+    <div>
+      <%= @post.body %>
+    </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Comentarios</h1>
+  </div>
+
+  <div>
+  </div>
+</div>

@@ -43,7 +43,25 @@ RSpec.describe "PostsPages", type: :request do
     end
 
     context "Incorrect Post" do
-      it "Error if post doesn't exist"
+      before do
+        visit post_path -1
+      end
+
+
+      it "Redirecting to Home Page" do
+        posts.each do |post|
+            expect(page).to have_content post.title
+            expect(page).to have_content post.body
+            expect(page).to have_content post.publish_date
+            expect(page).to have_content post.category.name
+        end
+
+      end
+
+      it "Showing error message" do
+        expect(page).to have_content "El post no existe"
+      end
+
     end
   end
 

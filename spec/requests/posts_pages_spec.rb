@@ -17,6 +17,24 @@ RSpec.describe "PostsPages", type: :request do
 			end
 		end
 	end
+  end
+
+
+  describe "Visiting one post"do
+    let!(:post) {posts.first}
+    before do
+        visit posts_path
+        find_by_id('pos'+post.id.to_s).click
+    end
+
+    context "Correct Post" do
+      it "should appear the title of the post" do
+         expect(page).to have_content post.title
+      end
+    end
+
+    context "Incorrect Post" do
+    end
 
   end
 

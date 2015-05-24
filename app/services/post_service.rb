@@ -6,7 +6,7 @@ class PostService
    end
 
    def all
-      @service = Post.all
+      @service = Post.order("publish_date DESC").all
    end
 
    def find (id)

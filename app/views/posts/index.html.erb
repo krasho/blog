@@ -10,7 +10,6 @@
           </h4>
           <div id="datos del post">
              <h5>
-               <span>Autor</span>
                <span><%= post.publish_date %></span>
                <span><%= post.category.name %></span>
              </h5>
@@ -18,7 +17,7 @@
 
             <p>
               <%= post.body %>
-              <a href="../components/#input-groups">Ver Post</a>.
+              <%= link_to 'Ver post',  post_path(post), :id =>"pos"+post.id.to_s %>
             </p>
         </div>
       </div>

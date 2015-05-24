@@ -1,9 +1,12 @@
 class PostsController < ApplicationController
     before_action :create_service
-    before_action :set_post, only: [:edit, :update, :destroy]
+    before_action :set_post, only: [:edit, :update, :destroy, :show]
 
     def index
         @posts = @post_service.all
+    end
+
+    def show
     end
 
     private

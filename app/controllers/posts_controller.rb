@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
     def create
         @post = @post_service.new
+        @post.publish_date = Time.now.to_i
         post_save
     end
 

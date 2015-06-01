@@ -15,7 +15,9 @@
           </h4>
           <div id="datos del post">
              <h5>
-               <span><%= post.publish_date %></span>
+               <% if !post.publish_date.nil? %>
+                  <span><%= Time.at(post.publish_date) %></span>
+               <% end if %>
                <span><%= post.category.name %></span>
              </h5>
           </div>

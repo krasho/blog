@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 
 gem 'rails', '4.2'
+gem 'puma'
 gem 'pg'
 
 gem 'bootstrap-sass',       '3.2.0.0'
